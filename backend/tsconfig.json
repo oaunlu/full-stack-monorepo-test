@@ -7,7 +7,12 @@
     "target": "es2022",
     "moduleResolution": "node",
     "sourceMap": true,
-    "outDir": "dist"
+    "outDir": "dist",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"],
+      "@configs/*": ["configs/*"]
+    }
   },
   "lib": ["es2022"]
 }
