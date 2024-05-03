@@ -3,6 +3,7 @@ import bodyParser from "body-parser";
 import moment from "moment";
 
 import router from "@/routes";
+import Config from "@configs/index";
 
 const app = express();
 
@@ -18,10 +19,13 @@ app.locals.moment = moment;
 app.use(router);
 
 app.get("/", (req, res) => {
-  res.send("Hello World!");
+  res
+    .status(200)
+    .send(
+      '<h1 style="color: red; max-width: fit-content; margin-inline: auto; ">Hello World!</h1>'
+    );
 });
 
-const PORT = process.env.PORT ?? 3000;
-app.listen(PORT, () => {
-  return console.log(`Express is listening at http://localhost:${PORT}`);
+app.listen(Config.port, () => {
+  return console.log(`Express is listening at http://localhost:${Config.port}`);
 });

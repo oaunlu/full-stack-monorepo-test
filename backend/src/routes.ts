@@ -1,9 +1,16 @@
-import { Router } from "express";
+import { NextFunction, Router } from "express";
 
-import { Controller } from "@/controller";
+import { Controller } from "@controllers/controller";
 
-const router = Router();
+const router = Router({ caseSensitive: true, strict: true });
 const controller = new Controller();
+
+// middleware that is specific to this router
+const timeLog = (req: Request, res: Response, next: NextFunction) => {
+  console.log("Time: ", Date.now());
+  next();
+};
+router.use(timeLog);
 
 router.get("/get", (req, res) => controller.get());
 

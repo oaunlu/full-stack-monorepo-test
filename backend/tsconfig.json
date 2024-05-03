@@ -1,4 +1,12 @@
 {
+  "ts-node": {
+    "transpileOnly": true,
+    "require": [
+      // set this so you dont need to use ts-node -r
+      "typescript-transform-paths/register",
+      "tsconfig-paths/register"
+    ]
+  },
   "compilerOptions": {
     "strict": true,
     "forceConsistentCasingInFileNames": true,
@@ -11,8 +19,22 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"],
-      "@configs/*": ["configs/*"]
-    }
+      "@configs/*": ["configs/*"],
+      "@controllers/*": ["src/controllers/*"],
+      "@services/*": ["src/services/*"],
+      "@utils/*": ["src/utils/*"]
+    },
+    "plugins": [
+      /* Transform paths in output .js files */
+      {
+        "transform": "typescript-transform-paths"
+      },
+      /* Transform paths in output .d.ts files */
+      {
+        "transform": "typescript-transform-paths",
+        "afterDeclarations": true
+      }
+    ]
   },
   "lib": ["es2022"]
 }
